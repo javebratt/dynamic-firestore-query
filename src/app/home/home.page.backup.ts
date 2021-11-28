@@ -4,13 +4,13 @@ import {
   Firestore,
   query,
   Query,
+  QueryConstraint,
   where,
   collectionData,
-  DocumentData,
   WhereFilterOp,
-  QueryConstraint,
+  DocumentData,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +18,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  initialQueryList: FirestoreQuery[] = [
-    { property: 'rate', operator: '==', value: 5 },
-  ];
-  foodItems$: Observable<FoodItem[]> = this.getFoodList(this.initialQueryList);
+  foodItems$: Observable<FoodItem[]> = this.getFoodList([]);
   constructor(private firestore: Firestore) {}
 
   getFoodList(queryList: FirestoreQuery[]): Observable<any[]> {

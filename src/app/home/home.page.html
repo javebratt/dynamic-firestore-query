@@ -1,25 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Inbox
-    </ion-title>
+    <ion-title> My Food 🌮 </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        Inbox
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+<ion-content class="ion-padding">
+  <ion-list lines="none">
+    <ion-item *ngFor="let foodItem of foodItems$ | async">
+      <ion-label>
+        <h2>{{ foodItem.name }}</h2>
+        <h6>Rating: <strong>{{ foodItem.rate}}</strong></h6>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
